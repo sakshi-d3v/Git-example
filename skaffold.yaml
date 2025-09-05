@@ -1,4 +1,3 @@
-cat <<EOF > skaffold.yaml
 apiVersion: skaffold/v2beta21
 kind: Config
 metadata:
@@ -27,4 +26,3 @@ profiles:
     kustomize:
       paths:
       - overlays/prod
-EOF
