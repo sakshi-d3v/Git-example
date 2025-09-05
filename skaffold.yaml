@@ -1,0 +1,30 @@
+cat <<EOF > skaffold.yaml
+apiVersion: skaffold/v2beta21
+kind: Config
+metadata:
+  name: getting-started-kustomize
+build:
+  tagPolicy:
+    gitCommit:
+      ignoreChanges: true
+  artifacts:
+  - image: skaffold-kustomize
+    context: app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+    - overlays/dev
+profiles:
+- name: staging
+  deploy:
+    kustomize:
+      paths:
+      - overlays/staging
+- name: prod
+  deploy:
+    kustomize:
+      paths:
+      - overlays/prod
+EOF
